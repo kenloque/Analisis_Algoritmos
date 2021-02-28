@@ -1,18 +1,20 @@
 #ifndef LIST_H_
 #define LIST_H_
 
+#define ptrList List<T>*
+
 #include "node.h"
 
 template <class T>
 class List{
 private:
-	pNode first;
-	pNode last;
+	ptrNode first;
+	ptrNode last;
 	
 private:
-	pNode searchNewLast(){
-		pNode auxNode =  this->first;
-		while(auxNode->getNext() == this->last){
+	ptrNode searchNewLast(){
+		ptrNode auxNode =  this->first;
+		while(auxNode->getNext() != this->last){
 			auxNode = auxNode->getNext();
 		}
 		return auxNode;
@@ -25,7 +27,7 @@ public:
 	}
 	
 	void addToEnd(T &pValue){
-		pNode newNode = new Node<T>(pValue);
+		ptrNode newNode = new Node<T>(pValue);
 		if(this->last){
 			this->last->setNext(newNode);
 			this->last = newNode;
@@ -36,7 +38,7 @@ public:
 	}
 	
 	void addToBeginning(T &pValue){
-		pNode newNode = new Node<T>(pValue);
+		ptrNode newNode = new Node<T>(pValue);
 		if(this->first){
 			newNode->setNext(this->first);
 			this->first = newNode;
@@ -55,7 +57,7 @@ public:
 	}
 	
 	void deleteFirst(){
-		pNode auxNode = this->first;
+		ptrNode auxNode = this->first;
 		if(this->first == this->last){
 			this->first = NULL;
 			this->last = NULL;
@@ -66,7 +68,7 @@ public:
 	}
 	
 	void deleteLast(){
-		pNode auxNode = this->last;
+		ptrNode auxNode = this->last;
 		if(this->first == this->last){
 			this->first = NULL;
 			this->last = NULL;
@@ -76,5 +78,4 @@ public:
 		delete auxNode;
 	}
 };
-typedef List<T>*  pList;
 #endif

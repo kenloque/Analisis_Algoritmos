@@ -1,6 +1,8 @@
 #ifndef NODE_H_
 #define NODE_H_
 
+#define ptrNode Node<T>*
+
 #include <iostream>
 
 using namespace std;
@@ -29,5 +31,4 @@ public:
 		this->next = pNext;
 	}
 };
-typedef Node<T>*  pNode;
 #endif
